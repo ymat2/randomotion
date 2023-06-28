@@ -69,6 +69,12 @@ function draw() {
 	}
 	document.getElementById("pop_black").textContent = particleCountByColor["black"] || 0;
 	document.getElementById("pop_white").textContent = particleCountByColor["white"] || 0;
+
+	// Stop simulation after 30 seconds
+	if (millis() - simulationStartTime >= 30000) {
+		isRunning = false;
+		noLoop();
+	}
 }
 
 // Detele particle
