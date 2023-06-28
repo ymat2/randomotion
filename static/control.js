@@ -1,16 +1,14 @@
 let isRunning = false;
 let intervalID;
 
-function startSimulation() {
+function controlSimulation() {
 	if (!isRunning) {
 		isRunning = true;
 		loop();
-	}
-}
-
-function pauseSimulation() {
-	if (isRunning) {
+		document.getElementById("controlButton").textContent = "Pause"
+	} else {
 		isRunning = false;
 		noLoop();
+		document.getElementById("controlButton").textContent = "Restart"
 	}
 }
