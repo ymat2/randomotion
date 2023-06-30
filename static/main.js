@@ -21,8 +21,10 @@ function setup() {
 
 function setBackgroundColor() {
 	var bgcolor = Number(document.getElementById("bg-slider").value);
-	background(bgcolor);
+	document.querySelector('main').style.backgroundColor = `rgb(${bgcolor}, ${bgcolor}, ${bgcolor})`;
 }
+
+//setBackgroundColor();
 
 function createParticle(
 		x = random(15, canvasWidth-15),
@@ -37,6 +39,7 @@ function createParticle(
 
 function draw() {
 	// Clear canvas
+	clear();
 	setBackgroundColor();
 
 	// Update particles
@@ -74,6 +77,8 @@ function draw() {
 	if (millis() - simulationStartTime >= 30000) {
 		isRunning = false;
 		noLoop();
+		totalPausedTime = 0;
+		document.getElementById("controlButton").textContent = "Restart";
 	}
 }
 
@@ -82,7 +87,7 @@ function mousePressed() {
 	for (let i = particles.length - 1; i >= 0; i--) {
 		let particle = particles[i];
 		let distance = dist(mouseX, mouseY, particle.position.x, particle.position.y);
-		if (distance < particle.radius / 2) {
+		if (distance < particle.radius / 2 && isRunning) {
 			particle.isAlive = false;
 		}
 	}
@@ -124,7 +129,7 @@ class Particle {
 
 	tryReproduct() {
 		let successRep = random();
-		if (this.isAlive && successRep < 0.0001) {
+		if (this.isAlive && successRep < 0.00020) {
 			let particle_new = createParticle();
 			particles.push(particle_new);
 		}

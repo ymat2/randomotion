@@ -12,7 +12,7 @@
 			<h2>遊び方</h2>
 			<ol>
 				<li>"Start"を押すと個体(⚫︎/⚪︎)が動き始めます。クリック(捕食)すると消えます。</li>
-				<li>たまに増えます。目立つ個体からどんどん食べましょう。</li>
+				<li>たまに増えます。目立つ個体からどんどん食べましょう。(<strong>制限時間 30秒</strong>)</li>
 				<li>"背景色"のスライドバーで背景色を変更できます。</li>
 				<li>背景色によって⚫︎と⚪︎の個体数がどのように変化するか見てみましょう。</li>
 			</ol>
@@ -20,10 +20,10 @@
 		<div id="controls" class="button">
 			<button id="controlButton" onclick="controlSimulation()">Start</button>
 		</div>
-		<div id="controls" class="slider">
+		<div id="controls" class="slider box">
 			<label class="slide-label">背景色</label>
 			<div class="slide-body">
-				<input type="range" id="bg-slider" min="64" max="255" value="128" />
+				<input type="range" id="bg-slider" min="64" max="253" value="128" oninput="setBackgroundColor()" />
 				<label class="min">暗</label><label class="max">明</label>
   		</div>
 		</div>
@@ -32,11 +32,11 @@
 		<table class="table">
 			<tbody>
 				<tr>
-					<td>黒の個体数</td>
+					<td>黒の個体数 ⚫︎</td>
 					<td id="pop_black"></td>
 				</tr>
 				<tr>
-					<td>白の個体数</td>
+					<td>白の個体数 ⚪︎</td>
 					<td id="pop_white"></td>
 				</tr>
 			</tbody>
